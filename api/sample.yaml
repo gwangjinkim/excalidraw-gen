@@ -1,0 +1,5 @@
+
+rows:
+  - text: "Hello from YAML"
+  - text: "Second row"
+  - text: "Another block"
