@@ -1,8 +1,8 @@
 services:
   excalidraw-api:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-      platform: linux/amd64
     ports:
       - "8000:8000"
