@@ -1,44 +1,37 @@
 FROM python:3.11-slim
 
+# Set working directory
 WORKDIR /app
 
+# Copy your API code
 COPY api/ /app/api/
 
-RUN pip install fastapi uvicorn pyyaml python-multipart
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    pyyaml \
+    python-multipart
 
-# Add Node.js and excalidraw-export to your existing Python container
-# Install all system-level dependencies
+# Install system dependencies for node-canvas (required by excalidraw_export)
 RUN apt-get update && apt-get install -y \
     curl \
     gnupg \
-    ca-certificates \
-    git \
-    chromium \
-    nodejs \
-    npm \
-    libnss3 \
-    libatk1.0-0 \
-    libx11-xcb1 \
-    libxcomposite1 \
-    libxdamage1 \
-    libxrandr2 \
-    libasound2 \
-    libxshmfence1 \
-    libgbm1 \
-    libx11-dev \
-    libgtk-3-0 \
-    libxext6 \
-    fonts-liberation \
     build-essential \
     libcairo2-dev \
-    libpango1.0-dev \
     libjpeg-dev \
+    libpango1.0-dev \
     libgif-dev \
     librsvg2-dev \
-    pkg-config 
+    nodejs \
+    npm \
+ && rm -rf /var/lib/apt/lists/*
 
-# Install working CLI renderer
+# Install excalidraw_export globally via npm
 RUN npm install --global excalidraw_export
 
+# Expose FastAPI port
 EXPOSE 8000
+
+# Start the FastAPI server
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
