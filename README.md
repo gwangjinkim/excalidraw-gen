@@ -14,8 +14,8 @@ Generate Excalidraw diagrams automatically from text input (YAML/Markdown) using
 ### 1. Build and Run the Docker API
 
 ```bash
-docker-compose build
-docker-compose up
+docker compose build
+docker compose up
 ```
 
 The API will be available at: http://localhost:8000

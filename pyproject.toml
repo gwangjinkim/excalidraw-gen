@@ -1,8 +1,9 @@
-
 [project]
 name = "excalidraw-gen"
 version = "0.1.0"
-dependencies = ["typer[all]", "requests"]
+dependencies = ["typer", "requests"]
 
 [project.scripts]
 exgen = "uv_tool.cli:app"
+
+[tool.setuptools]

@@ -1,0 +1,2 @@
+[console_scripts]
+exgen = uv_tool.cli:app
